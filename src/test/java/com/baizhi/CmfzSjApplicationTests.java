@@ -24,6 +24,7 @@ public class CmfzSjApplicationTests {
         System.out.println(stringObjectHashMap.get(null));
         List list = new ArrayList()
             aaaaaaaaaaaaaaaaaaaa ；
+        List list = new ArrayList();
 
 
 
