@@ -22,8 +22,7 @@ public class CmfzSjApplicationTests {
         stringObjectHashMap.put(null,"111111");
         stringObjectHashMap.put(null,"2222222");
         System.out.println(stringObjectHashMap.get(null));
-        List list = new ArrayList()
-            aaaaaaaaaaaaaaaaaaaa ；
+        System.out.println(stringObjectHashMap.get("1111111111111111111111111111111111111111"));
 
 
 
