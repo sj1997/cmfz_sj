@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.baizhi.dao.ChapterDAO">
+    <resultMap id="res" type="Chapter">
+        <id column="id" property="id"></id>
+        <result property="title" column="title"></result>
+        <result property="size" column="size"></result>
+        <result property="downPath" column="downPath"></result>
+        <result property="uploadTime" column="uploadTime"></result>
+        <association property="album" javaType="Album">
+            <id property="id" column="aid"></id>
+        </association>
+    </resultMap>
+    <!--分页查询-->
+    <select id="selectByPage" resultMap="res">
+        select chapter_id id,album_id aid,title ,size, downPath, upload_time uploadTime from c_chapter where album_id = #{id} limit #{page},#{pagenum}
+    </select>
+    <!--查询总数-->
+    <select id="selectZnum" resultType="java.lang.Integer">
+        select count(*) from c_chapter where album_id = #{id}
+    </select>
+    <!--添加-->
+    <insert id="insert">
+        insert into c_chapter values(#{id},#{album.id},#{title},#{size},#{downPath},#{uploadTime})
+    </insert>
+    <!--修改路径-->
+    <update id="update">
+        update c_chapter set downPath = #{downPath} where chapter_id = #{id}
+    </update>
+    <!--查询原路径-->
+    <select id="selectDownPath" resultType="java.lang.String">
+        select downPath from c_chapter where chapter_id = #{id}
+    </select>
+    <!--删除-->
+    <delete id="delete">
+        delete from c_chapter where chapter_id = #{id}
+    </delete>
+    <!--修改数据-->
+    <update id="updates">
+        update c_chapter set title = #{title}, size = #{size},downPath = #{downPath}, upload_time = #{uploadTime} where chapter_id = #{id}
+    </update>
+    <!--修改大小-->
+    <update id="modifySize">
+        update c_chapter set size = #{mb} where chapter_id = #{id}
+    </update>
+</mapper>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.baizhi.dao.GuruDAO">
+   <!--分页查询-->
+    <select id="selectByPage" resultType="Guru">
+        select guru_id id, name, profile, status, sex from c_guru limit #{page},#{pagenum}
+    </select>
+    <!--查询总数-->
+    <select id="selectZnum" resultType="java.lang.Integer">
+        select count(*) from c_guru
+    </select>
+    <!--删除-->
+    <delete id="delete">
+        delete from c_guru where guru_id = #{id}
+    </delete>
+    <!--添加-->
+    <insert id="insert">
+        insert into c_guru values(#{id},#{name},#{profile},#{status},#{sex})
+    </insert>
+    <!--修改-->
+    <update id="modify">
+        update c_guru set name = #{name}, profile = #{profile},status = #{status},sex = #{sex} where guru_id = #{id}
+    </update>
+    <!--修改状态-->
+    <update id="modifyStatus">
+        update c_guru set status = #{status} where guru_id = #{id}
+    </update>
+    <!--修改性别-->
+    <update id="modifySex">
+        update c_guru set sex = #{sex} where guru_id = #{id}
+    </update>
+    <!--查询所有-->
+    <select id="selectAll" resultType="Guru">
+        select guru_id id, name from c_guru
+    </select>
+
+</mapper>

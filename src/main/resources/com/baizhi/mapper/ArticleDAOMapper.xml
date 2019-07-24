@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.baizhi.dao.ArticleDAO">
+    <resultMap id="res" type="Article">
+        <id column="id" property="id"></id>
+        <result property="content" column="content"></result>
+        <result property="title" column="title"></result>
+        <result property="publishTime" column="publishTime"></result>
+        <association property="guru" javaType="Guru">
+            <id property="id" column="gid"></id>
+            <result property="name" column="name"></result>
+            <result property="profile" column="gprofile"></result>
+            <result property="status" column="gstatus"></result>
+            <result property="sex" column="gsex"></result>
+        </association>
+    </resultMap>
+    <!--分页查询-->
+    <select id="selectByPage" resultMap="res">
+        select a.article_id id, a.guru_id aid, a.title, a.content, a.publish_time publishTime,g.guru_id gid, g.name, g.profile gprofile, g.status gstatus ,g.sex gsex from c_article a left join c_guru g on a.guru_id = g.guru_id where a.guru_id = #{id} limit #{page},#{pagenum}
+    </select>
+    <!--查询总数-->
+    <select id="selectZnum" resultType="java.lang.Integer">
+        select count(*) from c_article where guru_id = #{id}
+    </select>
+    <!--删除-->
+    <delete id="delete">
+        delete from c_article where article_id = #{id}
+    </delete>
+    <!--添加-->
+    <insert id="insert">
+        insert into c_article values(#{id},#{guru.id},#{title},#{content},#{publishTime})
+    </insert>
+    <!--修改-->
+    <update id="modify">
+        update c_article set title = #{title}, content = #{content}, publish_time = #{publishTime} where article_id = #{id}
+    </update>
+    <!--根据id查询详情-->
+    <select id="selectProfile" resultMap="res">
+        select a.article_id id, a.guru_id aid, a.title, a.content, a.publish_time publishTime,g.guru_id gid, g.name, g.profile gprofile, g.status gstatus ,g.sex gsex from c_article a left join c_guru g on a.guru_id = g.guru_id  where article_id = #{id}
+    </select>
+</mapper>

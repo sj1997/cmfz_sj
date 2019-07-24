@@ -1,0 +1,27 @@
+spring:
+  datasource:
+    type: org.apache.commons.dbcp.BasicDataSource
+    driver-class-name: com.mysql.jdbc.Driver
+    username: root
+    password: root
+    url: jdbc:mysql://localhost:3306/cmfz
+  jackson:
+    date-format: yyyy-MM-dd
+    time-zone: GMT+8
+  servlet:
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 100MB
+  mvc:
+    date-format: yyyy-MM-dd
+mybatis:
+  type-aliases-package: com.baizhi.entity
+  mapper-locations: com/baizhi/mapper/*Mapper.xml
+server:
+  port: 9999
+  servlet:
+    context-path: /cmfz
+    jsp:
+      init-parameters:
+        devlopment: true
+

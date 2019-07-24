@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.baizhi.dao.CarouselDAO">
+   <!--分页查询-->
+    <select id="selectByPage" resultType="Carousel">
+        select carousel_id id, title, imgPath, status, create_time createTime from c_carousel limit #{page},#{pagenum}
+    </select>
+    <!--查询总数-->
+    <select id="selectZnum" resultType="java.lang.Integer">
+        select count(*) from c_carousel
+    </select>
+    <!--删除-->
+    <delete id="delete">
+        delete from c_carousel where carousel_id = #{id}
+    </delete>
+    <!--添加-->
+    <insert id="insert">
+        insert into c_carousel values(#{id},#{title},#{imgPath},#{status},#{createTime})
+    </insert>
+    <!--修改路径-->
+    <update id="update">
+        update c_carousel set imgPath = #{imgPath} where carousel_id = #{id}
+    </update>
+    <!--根据id查询图片路径-->
+    <select id="selectImgPath" resultType="java.lang.String">
+        select imgPath from c_carousel where carousel_id = #{id}
+    </select>
+    <!--修改数据-->
+    <update id="updatex">
+        update c_carousel set title = #{title}, status = #{status}, create_time = #{createTime} where carousel_id = #{id}
+    </update>
+    <!--修改状态-->
+    <update id="modifyStatus">
+        update c_carousel set status = #{status} where carousel_id = #{id}
+    </update>
+</mapper>
