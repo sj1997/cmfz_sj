@@ -18,10 +18,6 @@ import java.util.Map;
 public class CmfzSjApplicationTests {
     @Test
     public void test1(){
-        HashMap<String, Object> stringObjectHashMap = new HashMap<>();
-        stringObjectHashMap.put(null,"111111");
-        stringObjectHashMap.put(null,"2222222");
-        System.out.println(stringObjectHashMap.get(null));
         System.out.println(stringObjectHashMap.get("1111111111111111111111111111111111111111"));
 
 
